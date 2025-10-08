@@ -1,0 +1,1608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="HTTPBin Test Plan">
+      <stringProp name="TestPlan.comments">Performance test for first 5 HTTPBin APIs</stringProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Load testing">
+        <intProp name="ThreadGroup.num_threads">100</intProp>
+        <intProp name="ThreadGroup.ramp_time">10</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /get">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/get?show_env=1</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /post" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/post</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 30&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT /put" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/put</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 31&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DELETE /delete" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/delete</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PATCH /patch" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/patch</stringProp>
+          <stringProp name="HTTPSampler.method">PATCH</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="patchfield" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">xyz</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">patchfield</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">C:/Users/personal/Downloads/httpbin_jmeter_suite_v2_assessmet/httpbin_jmeter_suite_v2/users.csv</stringProp>
+          <boolProp name="ignoreFirstLine">true</boolProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Request" enabled="false">
+          <stringProp name="HTTPSampler.domain">jsonplaceholder.typicode.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">posts</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Post Request" enabled="false">
+          <stringProp name="HTTPSampler.domain">openai-mock.mock.beeceptor.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/assistants</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;model&quot;: &quot;gpt-4o&quot;,&#xd;
+  &quot;metadata&quot;: null,&#xd;
+  &quot;description&quot;: &quot;laboris elit ullamco ex&quot;,&#xd;
+  &quot;top_p&quot;: 1,&#xd;
+  &quot;temperature&quot;: 1,&#xd;
+  &quot;tool_resources&quot;: null,&#xd;
+  &quot;reasoning_effort&quot;: &quot;low&quot;,&#xd;
+  &quot;tools&quot;: [&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 32,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.9210543903763002,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.3133959090048781,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 33&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.5470325292877776,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 44&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;occaecat et sit id&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;minim aliqua&quot;,&#xd;
+        &quot;strict&quot;: null&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 44,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.9913642282418165,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.4651610014159333,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 4&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.6000285083873682,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 12&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.4519505497009395,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 9&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;irure sit labore in cupidatat&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;description&quot;: &quot;velit occaecat enim&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 7,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.2771722055446466,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 22,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.1707527750234279,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;ea&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;description&quot;: &quot;nostrud consequat in mollit&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;deserunt&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;description&quot;: &quot;do Ut mollit aliquip occaecat&quot;&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 10,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.6065809513755693,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 21,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.2806635686600665,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 24,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.43073120181008684,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;id labore cillum&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;quis sint&quot;,&#xd;
+        &quot;strict&quot;: null&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.11338523622121377,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 41&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;aute Duis et&quot;,&#xd;
+        &quot;description&quot;: &quot;nostrud dolore nisi&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;strict&quot;: null&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;dolore consectetur qui anim voluptate&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;description&quot;: &quot;nostrud eiusmod dolore non&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 34,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.8802061887090638,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 23,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.5603904569823741,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;Ut officia voluptate ut sint&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;description&quot;: &quot;Duis velit laboris minim&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 26,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.3321795921920976,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.908723591126521,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 2&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;Ut Excepteur sit aliqua&quot;,&#xd;
+        &quot;strict&quot;: true,&#xd;
+        &quot;description&quot;: &quot;sit&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.4725917971545237,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 39&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.2383173045821092,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 43&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 4,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.8491270467744634,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;eu dolor et&quot;,&#xd;
+        &quot;description&quot;: &quot;incididunt dolore nostrud irure&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;strict&quot;: false&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;consequat Duis sit&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;reprehenderit occaecat irure sit enim&quot;,&#xd;
+        &quot;strict&quot;: false&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.6474257832395081,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 13&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 22,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.07348593482822507,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.7509931874962918,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 30&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.09702424188245651,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 49&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 16,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.1709364272303484,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;commodo cupidatat dolore minim&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;description&quot;: &quot;nulla enim ex&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;officia dolor consequat adipisicing&quot;,&#xd;
+        &quot;description&quot;: &quot;cupidatat non&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.3585478336710395,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 44&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 4,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.3165744207865695,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;in&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;amet ea irure ipsum veniam&quot;,&#xd;
+        &quot;strict&quot;: null&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.9157015761421616,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 2&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.5884507286598413,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 49&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;do reprehenderit ullamco sunt Ut&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;veniam minim incididunt in elit&quot;,&#xd;
+        &quot;strict&quot;: false&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 18,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.401193560196933,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;dolore sint Ut quis laboris&quot;,&#xd;
+        &quot;strict&quot;: false,&#xd;
+        &quot;description&quot;: &quot;laboris&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.4004763312337871,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 16&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 5,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.6786492178434531,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;elit sint&quot;,&#xd;
+        &quot;description&quot;: &quot;in in voluptate commodo veniam&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;reprehenderit adipisicing labore&quot;,&#xd;
+        &quot;description&quot;: &quot;adipisicing voluptate elit ullamco&quot;,&#xd;
+        &quot;strict&quot;: true,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 43,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.2369065117051552,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.5240448488638754,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 21&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.0032896876182417767,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 11&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;sunt qui veniam dolore nostrud&quot;,&#xd;
+        &quot;strict&quot;: true,&#xd;
+        &quot;description&quot;: &quot;fugiat et officia eiusmod consequat&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;nostrud proident tempor commodo Excepteur&quot;,&#xd;
+        &quot;description&quot;: &quot;officia&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;strict&quot;: null&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 25,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.680623567464115,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;esse adipisicing dolor non laboris&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;sunt esse&quot;,&#xd;
+        &quot;strict&quot;: null&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 32,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.29362350245178326,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 28,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.9015652992536107,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 4,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.28711368765149015,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 40,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.9586897658199833,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;nisi ea&quot;,&#xd;
+        &quot;description&quot;: &quot;Ut sunt consequat&quot;,&#xd;
+        &quot;strict&quot;: true,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;ad est labore sunt officia&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;sunt ut&quot;&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.178811787125843,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 37&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;id&quot;,&#xd;
+        &quot;strict&quot;: false,&#xd;
+        &quot;description&quot;: &quot;esse commodo&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;qui ut Ut dolor&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;description&quot;: &quot;aliquip consectetur&quot;&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 46,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.28040833625403216,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;quis dolor incididunt consequat esse&quot;,&#xd;
+        &quot;strict&quot;: true,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;ad ea consectetur esse mollit&quot;&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;Duis esse in magna adipisicing&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;laboris&quot;&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;id ad Excepteur&quot;,&#xd;
+        &quot;description&quot;: &quot;irure&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;strict&quot;: null&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;dolor proident&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;strict&quot;: false,&#xd;
+        &quot;description&quot;: &quot;dolore adipisicing&quot;&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.8000016741811693,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 40&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.30201871190794716,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 3&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.7352384608465197,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 3&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.40946759477569494,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 49&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;exercitation&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;sunt quis&quot;,&#xd;
+        &quot;strict&quot;: true&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 3,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.6165761971658466,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 15,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.9712588197150029,&#xd;
+          &quot;ranker&quot;: &quot;default_2024_08_21&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;amet labore&quot;,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;elit dolor&quot;,&#xd;
+        &quot;strict&quot;: true&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;Lorem pariatur&quot;,&#xd;
+        &quot;description&quot;: &quot;veniam dolore elit&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.8609742964440528,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        },&#xd;
+        &quot;max_num_results&quot;: 2&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;file_search&quot;,&#xd;
+      &quot;file_search&quot;: {&#xd;
+        &quot;max_num_results&quot;: 26,&#xd;
+        &quot;ranking_options&quot;: {&#xd;
+          &quot;score_threshold&quot;: 0.2680863402712528,&#xd;
+          &quot;ranker&quot;: &quot;auto&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;velit sed elit non&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;aute fugiat&quot;&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;est minim proident nulla&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;parameters&quot;: {},&#xd;
+        &quot;description&quot;: &quot;nulla Excepteur&quot;&#xd;
+      }&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;code_interpreter&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;type&quot;: &quot;function&quot;,&#xd;
+      &quot;function&quot;: {&#xd;
+        &quot;name&quot;: &quot;laboris aute amet&quot;,&#xd;
+        &quot;strict&quot;: null,&#xd;
+        &quot;description&quot;: &quot;ad id&quot;,&#xd;
+        &quot;parameters&quot;: {}&#xd;
+      }&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;instructions&quot;: &quot;cupidatat Ut non est ullamco&quot;,&#xd;
+  &quot;response_format&quot;: {&#xd;
+    &quot;type&quot;: &quot;json_object&quot;&#xd;
+  },&#xd;
+  &quot;name&quot;: &quot;aliquip sunt&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Testing">
+        <intProp name="ThreadGroup.num_threads">100</intProp>
+        <intProp name="ThreadGroup.ramp_time">10</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /get" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/get?show_env=1</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /post" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/post</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 30&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT /put" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/put</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 31&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DELETE /delete" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/delete</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PATCH /patch" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/patch</stringProp>
+          <stringProp name="HTTPSampler.method">PATCH</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="patchfield" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">xyz</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">patchfield</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">C:/Users/personal/Downloads/httpbin_jmeter_suite_v2_assessmet/httpbin_jmeter_suite_v2/users.csv</stringProp>
+          <boolProp name="ignoreFirstLine">true</boolProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="false">
+          <stringProp name="HTTPSampler.domain">jsonplaceholder.typicode.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">posts</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Testing02">
+        <intProp name="ThreadGroup.num_threads">1000</intProp>
+        <intProp name="ThreadGroup.ramp_time">30</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /get" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/get?show_env=1</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /post" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/post</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 30&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT /put" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/put</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 31&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DELETE /delete" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/delete</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PATCH /patch" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/patch</stringProp>
+          <stringProp name="HTTPSampler.method">PATCH</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="patchfield" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">xyz</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">patchfield</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">C:/Users/personal/Downloads/httpbin_jmeter_suite_v2_assessmet/httpbin_jmeter_suite_v2/users.csv</stringProp>
+          <boolProp name="ignoreFirstLine">true</boolProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="false">
+          <stringProp name="HTTPSampler.domain">jsonplaceholder.typicode.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">posts</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Spike testing">
+        <intProp name="ThreadGroup.num_threads">500</intProp>
+        <intProp name="ThreadGroup.ramp_time">10</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /get" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/get?show_env=1</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /post" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/post</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 30&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT /put" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/put</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 31&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DELETE /delete" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/delete</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PATCH /patch" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/patch</stringProp>
+          <stringProp name="HTTPSampler.method">PATCH</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="patchfield" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">xyz</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">patchfield</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">C:/Users/personal/Downloads/httpbin_jmeter_suite_v2_assessmet/httpbin_jmeter_suite_v2/users.csv</stringProp>
+          <boolProp name="ignoreFirstLine">true</boolProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="false">
+          <stringProp name="HTTPSampler.domain">jsonplaceholder.typicode.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">posts</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Soak testing">
+        <intProp name="ThreadGroup.num_threads">400</intProp>
+        <intProp name="ThreadGroup.ramp_time">8</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">40</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /get" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/get?show_env=1</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /post" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/post</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 30&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT /put" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/put</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;name&quot;: &quot;John&quot;,&#xd;
+    &quot;age&quot;: 31&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DELETE /delete" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/delete</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PATCH /patch" enabled="true">
+          <stringProp name="HTTPSampler.domain">httpbin.org</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/patch</stringProp>
+          <stringProp name="HTTPSampler.method">PATCH</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="patchfield" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">xyz</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">patchfield</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">C:/Users/personal/Downloads/httpbin_jmeter_suite_v2_assessmet/httpbin_jmeter_suite_v2/users.csv</stringProp>
+          <boolProp name="ignoreFirstLine">true</boolProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="false">
+          <stringProp name="HTTPSampler.domain">jsonplaceholder.typicode.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">posts</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
