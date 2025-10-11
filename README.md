@@ -1,4 +1,4 @@
-# HTTPBin Performance Test Suite (JMeter + Docker Compose)
+# HTTPBin Post API Performance Test Suite (JMeter + Docker Compose)
 
 ## Overview
 This suite tests the first post HTTPBin API:
