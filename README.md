@@ -1,8 +1,7 @@
 # HTTPBin Performance Test Suite (JMeter + Docker Compose)
 
 ## Overview
-This suite tests the first 8 HTTPBin APIs:
-- /get, /post, /put, /delete, /patch
+This suite tests the first post HTTPBin API:
 
 ## Setup
 ## Bhanu
@@ -16,7 +15,7 @@ docker-compose up
 - Generates HTML report in `report-html/index.html`
 
 ### 2️⃣ Run JMeter GUI (Optional)
-- Open `httpbin_test_plan.jmx` in JMeter GUI
+- Open `PostBin_Test.jmx` in JMeter GUI
 - Adjust Thread Group for user count & duration
 - Run test and view results
 
