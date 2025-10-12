@@ -21,28 +21,30 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
 
-    - name: Create results directory
+    - name: Prepare directories
       run: |
         mkdir -p results
         mkdir -p report-html
 
     - name: Download and extract JMeter
       run: |
-        if [ ! -d "apache-jmeter-5.6.3" ]; then
-          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
-          tar -xzf apache-jmeter-5.6.3.tgz
+        JMETER_VERSION=5.6.3
+        if [ ! -d "apache-jmeter-${JMETER_VERSION}" ]; then
+          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
+          tar -xzf apache-jmeter-${JMETER_VERSION}.tgz
         fi
 
     - name: Start HTTPBin service
       run: |
         docker run -d -p 8080:80 --name httpbin kennethreitz/httpbin
         echo "Waiting for HTTPBin to be ready..."
-        timeout 30 bash -c 'until curl -f http://localhost:8080/get; do sleep 2; done'
+        timeout 30 bash -c 'until curl -fsS http://localhost:8080/get; do sleep 2; done'
         echo "✅ HTTPBin is ready!"
         curl -v http://localhost:8080/get
 
-    - name: Run JMeter Tests
+    - name: Run JMeter Test (PostBin_Test.jmx)
       run: |
+        echo "🚀 Running JMeter test: PostBin_Test.jmx"
         ./apache-jmeter-5.6.3/bin/jmeter -n \
           -t PostBin_Test.jmx \
           -l results/results.csv \
@@ -51,7 +53,7 @@ jobs:
           -Jjmeter.reportgenerator.overall_granularity=1000
       continue-on-error: true
 
-    - name: Check JMeter execution
+    - name: Verify JMeter Results
       run: |
         if [ -f "results/results.csv" ]; then
           echo "✅ JMeter results file generated successfully"
@@ -61,19 +63,15 @@ jobs:
           exit 1
         fi
 
-    - name: Verify HTML Report
+    - name: Verify JMeter HTML Report
       run: |
         if [ -f "report-html/index.html" ]; then
           echo "✅ JMeter HTML report generated successfully"
           ls -lh report-html/
         else
           echo "❌ JMeter HTML report not generated!"
-          echo "Contents of current directory:"
-          ls -la
           echo "Contents of report-html directory:"
           ls -la report-html/
-          echo "JMeter log:"
-          cat jmeter.log
           exit 1
         fi
 
@@ -81,7 +79,7 @@ jobs:
       if: always()
       run: docker stop httpbin || true
 
-    - name: Upload JMeter Results
+    - name: Upload JMeter Results (CSV)
       if: always()
       uses: actions/upload-artifact@v4
       with:
@@ -105,8 +103,9 @@ jobs:
     - name: Display Test Summary
       if: always()
       run: |
-        echo "=== Test Execution Summary ==="
+        echo "=== 🧾 Test Execution Summary ==="
         if [ -f "results/results.csv" ]; then
-          echo "Total Samples: $(grep -c ',HTTP' results/results.csv || echo 'N/A')"
+          TOTAL=$(grep -c ',' results/results.csv || echo '0')
+          echo "Total Samples Executed: $TOTAL"
         fi
-        echo "Report available in artifacts"
+        echo "HTML Report available in GitHub Actions Artifacts (jmeter-html-report)"

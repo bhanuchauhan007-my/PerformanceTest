@@ -105,7 +105,7 @@ if (errorRate &gt; 1.0) {
           </JSR223Assertion>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -142,7 +142,7 @@ if (errorRate &gt; 1.0) {
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -176,7 +176,7 @@ if (errorRate &gt; 1.0) {
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">D:\Assessment\PerformanceTest\Table Report_LoadTest.csv</stringProp>
+          <stringProp name="filename">D:\Assessment\PerformanceTest\Results.xml\LoadTesting\Table Report_LoadTest.csv</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
@@ -313,7 +313,7 @@ if (errorRate &gt; 1.0) {
           <stringProp name="scriptLanguage">java</stringProp>
         </JSR223Assertion>
         <hashTree/>
-        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -347,7 +347,7 @@ if (errorRate &gt; 1.0) {
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">D:\Assessment\PerformanceTest\Table Report_SoakTest.csv</stringProp>
+          <stringProp name="filename">D:\Assessment\PerformanceTest\Results.xml\Soak Testing\Table Report_SoakTest.csv</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
@@ -483,7 +483,7 @@ if (errorRate &gt; 1.0) {
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -517,7 +517,7 @@ if (errorRate &gt; 1.0) {
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">D:\Assessment\PerformanceTest\Table Report_StressTest.csv</stringProp>
+          <stringProp name="filename">D:\Assessment\PerformanceTest\Results.xml\Stress Testing\Table Report_StressTest.csv</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
@@ -559,7 +559,7 @@ if (errorRate &gt; 1.0) {
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
       </kg.apc.jmeter.threads.UltimateThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Post HTTP" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Post HTTP">
           <stringProp name="TestPlan.comments">Created from cURL on 2025-10-10T15:56:00.461</stringProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -678,7 +678,7 @@ if (errorRate &gt; 1.0) {
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -712,7 +712,7 @@ if (errorRate &gt; 1.0) {
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">D:\Assessment\PerformanceTest\Table Report_SpikeTest.csv</stringProp>
+          <stringProp name="filename">D:\Assessment\PerformanceTest\Results.xml\Spike Testing\Table Report_SpikeTest.csv</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
