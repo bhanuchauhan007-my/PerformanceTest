@@ -36,11 +36,6 @@ jobs:
         java -cp apache-jmeter-${JMETER_VERSION}/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
         apache-jmeter-${JMETER_VERSION}/bin/PluginsManagerCMD.sh install jpgc-casutg
 
-      name: Verify JMeter Plugins
-      run: |
-        echo "Installed JMeter Plugins:"
-        ls apache-jmeter-5.6.3/lib/ext | grep jpgc || true
-
     - name: Start HTTPBin service
       run: |
         docker run -d -p 8080:80 --name httpbin kennethreitz/httpbin
