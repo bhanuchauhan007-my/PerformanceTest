@@ -29,10 +29,18 @@ jobs:
     - name: Download and extract JMeter
       run: |
         JMETER_VERSION=5.6.3
-        if [ ! -d "apache-jmeter-${JMETER_VERSION}" ]; then
-          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
-          tar -xzf apache-jmeter-${JMETER_VERSION}.tgz
-        fi
+        wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
+        tar -xzf apache-jmeter-${JMETER_VERSION}.tgz
+
+        # Download JMeter Plugins Manager JAR
+        wget https://jmeter-plugins.org/get/ -O apache-jmeter-${JMETER_VERSION}/lib/ext/jmeter-plugins-manager.jar
+
+        # Download cmdrunner (required by Plugins Manager)
+        wget https://jmeter-plugins.org/files/cmdrunner-latest.jar -O apache-jmeter-${JMETER_VERSION}/lib/cmdrunner-2.3.jar
+
+        # Install the Custom Thread Groups plugin (includes UltimateThreadGroup)
+        java -cp apache-jmeter-${JMETER_VERSION}/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
+        apache-jmeter-${JMETER_VERSION}/bin/PluginsManagerCMD.sh install jpgc-casutg
 
     - name: Start HTTPBin service
       run: |
