@@ -28,29 +28,11 @@ jobs:
 
     - name: Download and extract JMeter
       run: |
-       JMETER_VERSION=5.6.3
-        wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
-        tar -xzf apache-jmeter-${JMETER_VERSION}.tgz
-
-        # Download JMeter Plugins Manager JAR
-        wget https://jmeter-plugins.org/get/ -O apache-jmeter-${JMETER_VERSION}/lib/ext/jmeter-plugins-manager.jar
-
-        # Download cmdrunner (required by Plugins Manager)
-        wget https://jmeter-plugins.org/files/cmdrunner-latest.jar -O apache-jmeter-${JMETER_VERSION}/lib/cmdrunner.jar
-
-        # Install PluginManagerCMDInstaller to create plugin command scripts
-        java -cp apache-jmeter-${JMETER_VERSION}/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
-
-        # Make sure the script exists and is executable
-        chmod +x apache-jmeter-${JMETER_VERSION}/bin/PluginsManagerCMD.sh
-
-        # Install the Custom Thread Groups plugin (Ultimate Thread Group)
-        apache-jmeter-${JMETER_VERSION}/bin/PluginsManagerCMD.sh install jpgc-casutg
-
-        # Verify plugin installed successfully
-        echo "Installed JMeter Plugins:"
-        ls apache-jmeter-${JMETER_VERSION}/lib/ext | grep jpgc || true
-
+       if [ ! -d "apache-jmeter-5.6.3" ]; then
+          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+          tar -xzf apache-jmeter-5.6.3.tgz
+        fi
+    
     - name: Start HTTPBin service
       run: |
         docker run -d -p 8080:80 --name httpbin kennethreitz/httpbin
